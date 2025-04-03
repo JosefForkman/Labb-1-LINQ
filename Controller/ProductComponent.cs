@@ -1,9 +1,9 @@
 using Labb_1___LINQ.Modules;
 using Microsoft.EntityFrameworkCore;
 
-namespace Labb_1___LINQ.Components;
+namespace Labb_1___LINQ.Controller;
 
-public class Product
+public class ProductComponent
 {
     public static void Index(string Category)
     {
