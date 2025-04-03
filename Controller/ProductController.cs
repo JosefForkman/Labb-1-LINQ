@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labb_1___LINQ.Controller;
 
-public class ProductComponent
+public class ProductController
 {
     public static void Index(string Category)
     {

@@ -14,10 +14,10 @@ while (menuRuning)
     switch (curentMenu)
     {
         case 0:
-            ProductComponent.Index("Electronics");
+            ProductController.Index("Electronics");
             break;
         case 1:
-            SupplierComponent.Index();
+            SupplierController.Index();
             break;
         case 2:
             menuRuning = false;

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Labb_1___LINQ.Controller;
 
-public class SupplierComponent
+public class SupplierController
 {
     public static void Index()
     {
