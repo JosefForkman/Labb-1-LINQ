@@ -1,0 +1,86 @@
+## Category
+
+| Id | Name | Description |
+|----|------|-------------|
+| 1 | Electronics | Elektronik och tekniska produkter |
+| 2 | Home & Kitchen | Produkter för hemmet och köket |
+| 3 | Clothing | Kläder och accessoarer |
+| 4 | Sports | Sportutrustning och träningsprodukter |
+| 5 | Books | Böcker och litteratur |
+
+## Supplier
+
+| Id | Name | ContactPerson | Email | Phone |
+|----|------|--------------|-------|-------|
+| 1 | TechVision AB | Anna Lindberg | anna@techvision.se | 070-123-4567 |
+| 2 | HomeStyle | Johan Bergman | johan@homestyle.se | 073-234-5678 |
+| 3 | Fashion First | Maria Ek | maria@fashionfirst.se | 076-345-6789 |
+| 4 | SportMax | Erik Strand | erik@sportmax.se | 072-456-7890 |
+| 5 | Nordic Electronics | Karl Holm | karl@nordicelec.se | 070-567-8901 |
+| 6 | Global Gadgets | Lisa Björk | lisa@globalgadgets.se | 073-678-9012 |
+
+## Product
+
+| Id | Name | Description | Price | StockQuantity | CategoryId | SupplierId |
+|----|------|-------------|-------|---------------|-----------|------------|
+| 1 | iPhone 13 Pro | Smartphone med 128GB lagring | 11999 | 15 | 1 | 1 |
+| 2 | Samsung TV 55" | 4K Smart TV med HDR | 8999 | 8 | 1 | 5 |
+| 3 | Sony WH-1000XM4 | Trådlösa hörlurar med brusreducering | 3499 | 7 | 1 | 5 |
+| 4 | MacBook Air | Laptop med M1-chip och 8GB RAM | 12499 | 12 | 1 | 1 |
+| 5 | Espressomaskin | Automatisk espressomaskin | 4995 | 6 | 2 | 2 |
+| 6 | Matberedare | Multifunktionell köksmaskin | 1299 | 20 | 2 | 2 |
+| 7 | Vinterjacka | Varm jacka för vinterbruk | 1999 | 25 | 3 | 3 |
+| 8 | Löparskor | Skor för långdistanslöpning | 1499 | 18 | 4 | 4 |
+| 9 | Yogamatta | Halkfri yogamatta | 349 | 30 | 4 | 4 |
+| 10 | Bestsellerroman | Populär skönlitterär roman | 249 | 40 | 5 | 2 |
+| 11 | Gaming PC | Högpresterande dator för gaming | 18999 | 5 | 1 | 6 |
+| 12 | Tablet | 10" surfplatta med WiFi | 4299 | 9 | 1 | 5 |
+| 13 | Bluetooth-högtalare | Portabel högtalare med 20h batteritid | 899 | 22 | 1 | 6 |
+| 14 | Kaffebryggare | Programmerbar kaffebryggare | 799 | 14 | 2 | 2 |
+| 15 | Träningströja | Funktionströja för träning | 499 | 35 | 3 | 3 |
+
+## Customer
+
+| Id | Name | Email | Phone | Address |
+|----|------|-------|-------|---------|
+| 1 | Anders Svensson | anders@example.com | 070-111-2233 | Storgatan 1, Stockholm |
+| 2 | Emma Johansson | emma@example.com | 073-222-3344 | Kungsgatan 15, Göteborg |
+| 3 | Lars Nilsson | lars@example.com | 076-333-4455 | Drottninggatan 8, Malmö |
+| 4 | Sofia Lindgren | sofia@example.com | 072-444-5566 | Sveavägen 22, Uppsala |
+| 5 | Peter Karlsson | peter@example.com | 070-555-6677 | Järntorget 5, Göteborg |
+
+## Order
+
+| Id | OrderDate | CustomerId | TotalAmount | Status |
+|----|-----------|------------|-------------|--------|
+| 1 | 2025-03-01 | 1 | 11999 | Levererad |
+| 2 | 2025-03-05 | 2 | 9798 | Levererad |
+| 3 | 2025-03-10 | 3 | 18999 | Behandlas |
+| 4 | 2025-03-12 | 4 | 3499 | Levererad |
+| 5 | 2025-03-15 | 5 | 16994 | Skickad |
+| 6 | 2025-02-20 | 1 | 899 | Levererad |
+| 7 | 2025-02-25 | 3 | 2498 | Levererad |
+| 8 | 2025-03-18 | 2 | 1598 | Skickad |
+| 9 | 2025-03-20 | 4 | 5794 | Behandlas |
+| 10 | 2025-03-22 | 5 | 1299 | Behandlas |
+
+## OrderDetail
+
+| Id | OrderId | ProductId | Quantity | UnitPrice |
+|----|---------|-----------|----------|-----------|
+| 1 | 1 | 1 | 1 | 11999 |
+| 2 | 2 | 3 | 2 | 3499 |
+| 3 | 2 | 13 | 3 | 899 |
+| 4 | 3 | 11 | 1 | 18999 |
+| 5 | 4 | 3 | 1 | 3499 |
+| 6 | 5 | 4 | 1 | 12499 |
+| 7 | 5 | 5 | 1 | 4495 |
+| 8 | 6 | 13 | 1 | 899 |
+| 9 | 7 | 8 | 1 | 1499 |
+| 10 | 7 | 9 | 3 | 349 |
+| 11 | 8 | 7 | 1 | 1999 |
+| 12 | 8 | 15 | 3 | 499 |
+| 13 | 9 | 2 | 1 | 8999 |
+| 14 | 9 | 6 | 1 | 1299 |
+| 15 | 9 | 14 | 2 | 799 |
+| 16 | 10 | 6 | 1 | 1299 |
