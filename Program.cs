@@ -4,7 +4,7 @@ using Labb_1___LINQ.utils;
 
 
 // Menu
-var menu = new Menu(["Show produkts", "Show supplier with less 10 units", "exit"]);
+var menu = new Menu(["Show produkts", "Show supplier with less 10 units", "Get curent order", "exit"]);
 
 var menuRuning = true;
 
@@ -20,6 +20,9 @@ while (menuRuning)
             SupplierController.Index();
             break;
         case 2:
+            OrderController.GetTotalOrderValue(); 
+            break;
+        case 3:
             menuRuning = false;
             break;
         default:
