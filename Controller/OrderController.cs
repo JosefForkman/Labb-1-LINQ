@@ -1,5 +1,6 @@
 
 using Labb_1___LINQ.Modules;
+using Microsoft.EntityFrameworkCore;
 
 namespace Labb_1___LINQ.Controller;
 
@@ -17,6 +18,25 @@ public class OrderController
             .Sum(order => order.TotalAmount);
 
         Console.WriteLine($"Sum: {orders}");
+
+        Console.ReadKey();
+    }
+
+    public static void GetTopProduct(int count = 3)
+    {
+        using var context = new ShopContext();
+
+        var produkts = context.OrderDetails
+            .Include(order => order.Product)
+            .Select(order => new { order.Product, sum = order.UnitPrice * order.Quantity })
+            .OrderByDescending(order => order.sum)
+            .Take(count);
+
+
+        foreach (var produkt in produkts)
+        {
+            Console.WriteLine($"Name: {produkt.Product.Name} Pris: {produkt.Product.Price}");
+        }
 
         Console.ReadKey();
     }
