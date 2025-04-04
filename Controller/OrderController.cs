@@ -12,12 +12,16 @@ public class OrderController
 
         var currentDate = DateTime.Now;
 
-        var orders = context.Orders
-            .Where(order => order.OrderDate.Year >= currentDate.Year && order.OrderDate.Month >= currentDate.Month)
+        var ordersCounts = context.Orders
+            .Where(order => (
+                    order.OrderDate.Year >= currentDate.Year && 
+                    order.OrderDate.Month >= currentDate.Month && 
+                    order.Status == OrderStatus.Skickad
+                ))
             .ToList()
             .Sum(order => order.TotalAmount);
 
-        Console.WriteLine($"Sum: {orders}");
+        Console.WriteLine($"Sum: {ordersCounts}");
 
         Console.ReadKey();
     }
