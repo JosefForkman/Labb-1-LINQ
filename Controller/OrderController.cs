@@ -14,8 +14,8 @@ public class OrderController
 
         var ordersCounts = context.Orders
             .Where(order => (
-                    order.OrderDate.Year >= currentDate.Year && 
-                    order.OrderDate.Month >= currentDate.Month && 
+                    order.OrderDate.Year >= currentDate.Year &&
+                    order.OrderDate.Month >= currentDate.Month &&
                     order.Status == OrderStatus.Skickad
                 ))
             .ToList()
@@ -43,5 +43,25 @@ public class OrderController
         }
 
         Console.ReadKey();
+    }
+    public static void GatAllOrdersDitails()
+    {
+        using var context = new ShopContext();
+
+        var orders = context.Orders
+            .Include(order => order.Customer)
+            .Include(order => order.OrderDetails)
+            .Where(order => order.TotalAmount >= 1000);
+
+        foreach (var order in orders)
+        {
+            Console.WriteLine($"Custumer name: {order.Customer.Name} with email {order.Customer.Email}");
+            Console.WriteLine("==========================");
+
+            foreach (var orderDitail in order.OrderDetails)
+            {
+                Console.WriteLine($"Custumer name: {orderDitail} with email {order.Customer.Email}");
+            }
+        }
     }
 }

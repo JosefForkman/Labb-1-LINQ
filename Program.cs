@@ -4,7 +4,7 @@ using Labb_1___LINQ.utils;
 
 
 // Menu
-var menu = new Menu(["Show produkts", "Show supplier with less 10 units", "Get curent order", "Get top 3 produkt", "Get all catogorys", "exit"]);
+var menu = new Menu(["Show produkts", "Show supplier with less 10 units", "Get curent order", "Get top 3 produkt", "Get all catogorys", "Get all order ditails", "exit"]);
 
 var menuRuning = true;
 
@@ -20,15 +20,18 @@ while (menuRuning)
             SupplierController.Index();
             break;
         case 2:
-            OrderController.GetTotalOrderValue(); 
+            OrderController.GetTotalOrderValue();
             break;
         case 3:
-            OrderController.GetTopProduct(6); 
+            OrderController.GetTopProduct(6);
             break;
         case 4:
-            CategoryController.GetCategory(); 
+            CategoryController.GetCategory();
             break;
         case 5:
+            OrderController.GatAllOrdersDitails();
+            break;
+        case 6:
             menuRuning = false;
             break;
         default:
