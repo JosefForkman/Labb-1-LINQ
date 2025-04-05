@@ -17,5 +17,6 @@ public class CategoryController
         {
             Console.WriteLine($"{produkt.Name} har {produkt.Count}st prudukter");
         }
+        Console.ReadKey();
     }
 }

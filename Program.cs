@@ -23,7 +23,7 @@ while (menuRuning)
             OrderController.GetTotalOrderValue();
             break;
         case 3:
-            OrderController.GetTopProduct(6);
+            OrderController.GetTopProduct(3);
             break;
         case 4:
             CategoryController.GetCategory();
