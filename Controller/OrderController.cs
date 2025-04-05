@@ -51,17 +51,27 @@ public class OrderController
         var orders = context.Orders
             .Include(order => order.Customer)
             .Include(order => order.OrderDetails)
-            .Where(order => order.TotalAmount >= 1000);
+                .ThenInclude(orderDetails => orderDetails.Product)
+            .Where(order => order.TotalAmount >= 1000)
+            .Select(order => new
+            {
+                order.Customer.Name,
+                order.Customer.Email,
+                OrderDetails = order.OrderDetails.Select(orderDitail => new { orderDitail.Quantity, orderDitail.UnitPrice, orderDitail.Product.Name }),
+            });
 
         foreach (var order in orders)
         {
-            Console.WriteLine($"Custumer name: {order.Customer.Name} with email {order.Customer.Email}");
+            Console.WriteLine($"Custumer name: {order.Name} with email {order.Email}");
             Console.WriteLine("==========================");
 
             foreach (var orderDitail in order.OrderDetails)
             {
-                Console.WriteLine($"Custumer name: {orderDitail} with email {order.Customer.Email}");
+                Console.WriteLine($"Produkt name: {orderDitail.Name} costing {orderDitail.Quantity}pcs X {orderDitail.UnitPrice}kr");
             }
+
+            Console.WriteLine("\n\n");
         }
+        Console.ReadKey();
     }
 }
