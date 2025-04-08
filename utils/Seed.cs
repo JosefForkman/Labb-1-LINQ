@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using Labb_1___LINQ.Modules;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +6,7 @@ namespace Labb_1___LINQ.utils;
 
 public class Seed
 {
+    private string _path = "/workspaces/LabbOneLINQ/seed.csv";
     public static void SeedData(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Category>().HasData(
@@ -81,5 +83,52 @@ public class Seed
             new OrderDetail { Id = 15, OrderId = 9, ProductId = 14, Quantity = 2, UnitPrice = 799 },
             new OrderDetail { Id = 16, OrderId = 10, ProductId = 6, Quantity = 1, UnitPrice = 1299 }
         );
+    }
+
+    public void SeedDataV2()
+    {
+        using StreamReader reader = new StreamReader(_path);
+        string? line;
+
+        while ((line = reader.ReadLine()) != null)
+        {
+            Regex CSVParcer = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
+
+            string[] x = CSVParcer.Split(line);
+        }
+    }
+    public void SeedDataV3()
+    {
+        try
+        {
+            // Läs hela innehållet från CSV-filen
+            string csvData = File.ReadAllText(_path);
+
+            // Dela upp CSV-datan i rader
+            string[] rows = csvData.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (rows.Length <= 2) // Kontrollera att det finns minst en datarad efter heder och separator
+            {
+                Console.WriteLine("Ingen data hittades efter hederraden i filen.");
+                return;
+            }
+
+            // Hoppa över de två första raderna (heder och separator)
+            foreach (string row in rows.Skip(2))
+            {
+                // Regex för att matcha celler i en rad
+                string pattern = @"[^|]*[a-zA-Z0-9åäöÅÄÖ]+[^|]*"; // Matchar text mellan två | (kan vara tomt)
+                var matches = Regex.Matches(row, pattern);
+
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"Filen hittades inte på sökvägen: {_path}");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Ett fel uppstod vid läsning av filen: {ex.Message}");
+        }
     }
 }
