@@ -3,8 +3,7 @@ using Labb_1___LINQ.Controller;
 using Labb_1___LINQ.utils;
 
 Seed seed = new Seed();
-seed.SeedDataV3();
-
+seed.SeedDataV2();
 
 // // Menu
 // var menu = new Menu(["Show produkts", "Show supplier with less 10 units", "Get curent order", "Get top 3 produkt", "Get all catogorys", "Get all order ditails", "exit"]);

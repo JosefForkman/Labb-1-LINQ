@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Labb_1___LINQ.Modules;
 using Microsoft.EntityFrameworkCore;
 
@@ -83,6 +84,49 @@ public class Seed
             new OrderDetail { Id = 15, OrderId = 9, ProductId = 14, Quantity = 2, UnitPrice = 799 },
             new OrderDetail { Id = 16, OrderId = 10, ProductId = 6, Quantity = 1, UnitPrice = 1299 }
         );
+    }
+
+    public void SeedDataV2()
+    {
+        var csv = File.ReadAllLines(_path);
+        string modelName;
+
+        if (csv is null)
+        {
+            return;
+        }
+
+        Regex regExCell = new Regex(@"(?<=\|)([^|]*)(?=\|)");
+        Regex regExHedderDivider = new Regex(@"^[\|-]+$");
+
+        var formatCSV = csv.Where((csv) => csv != "");
+
+        foreach (var row in formatCSV)
+        {
+            var cellMatches = regExCell.Matches(row);
+            // Check if row is equeal to a hedder
+            if (row.Contains("##"))
+            {
+                modelName = row.Split("##", StringSplitOptions.TrimEntries)[1];
+            }
+
+            // Check if row look like a (|----|------|-------------|)
+            if (regExHedderDivider.IsMatch(row))
+            {
+                continue;
+            }
+
+            if (cellMatches.Count == 0)
+            {
+                continue;
+            }
+
+
+            foreach (var cell in cellMatches)
+            {
+                Console.WriteLine(cell);
+            }
+        }
     }
 
     public void SeedDataV2()
