@@ -129,18 +129,6 @@ public class Seed
         }
     }
 
-    public void SeedDataV2()
-    {
-        using StreamReader reader = new StreamReader(_path);
-        string? line;
-
-        while ((line = reader.ReadLine()) != null)
-        {
-            Regex CSVParcer = new Regex(",(?=(?:[^\"]*\"[^\"]*\")*(?![^\"]*\"))");
-
-            string[] x = CSVParcer.Split(line);
-        }
-    }
     public void SeedDataV3()
     {
         try
