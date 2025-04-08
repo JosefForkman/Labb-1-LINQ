@@ -1,4 +1,4 @@
-ääusing System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using Labb_1___LINQ.Modules;
 using Microsoft.EntityFrameworkCore;
 
