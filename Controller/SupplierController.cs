@@ -12,8 +12,9 @@ public class SupplierController
         var suppliers = context.Products
             .Include(product => product.Supplier)
             .Where(product => product.StockQuantity < 10)
-            .Select(product => new { product.Supplier.Name, product.StockQuantity })
-            .Distinct();
+            .Select(product => new { product.Supplier.Name, product.Supplier.Id, product.StockQuantity })
+            .ToList()
+            .DistinctBy(product => product.Id);
 
 
         foreach (var supplier in suppliers)
