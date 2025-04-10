@@ -1,4 +1,5 @@
 
+using System.Linq;
 using Labb_1___LINQ.Modules;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,15 +11,10 @@ public class OrderController
     {
         using var context = new ShopContext();
 
-        var currentDate = DateTime.Now;
+        var currentDate = DateTime.Now.AddMonths(-1);
 
         var ordersCounts = context.Orders
-            .Where(order => (
-                    order.OrderDate.Year >= currentDate.Year &&
-                    order.OrderDate.Month >= currentDate.Month &&
-                    order.Status == OrderStatus.Skickad
-                ))
-            .ToList()
+            .Where(order => order.OrderDate >= currentDate)
             .Sum(order => order.TotalAmount);
 
         Console.WriteLine($"Sum: {ordersCounts}");
@@ -31,15 +27,20 @@ public class OrderController
         using var context = new ShopContext();
 
         var produkts = context.OrderDetails
-            .Include(order => order.Product)
-            .Select(order => new { order.Product, sum = order.UnitPrice * order.Quantity })
-            .OrderByDescending(order => order.sum)
-            .Take(count);
+                .GroupBy(p => new { p.ProductId, p.Product.Name, p.Product.Price })
+                .Select(g => new
+                {
+                    g.Key.Name,
+                    g.Key.Price,
+                    ProductCount = g.Count()
+                })
+                .OrderByDescending(r => r.ProductCount)
+                .Take(count);
 
 
         foreach (var produkt in produkts)
         {
-            Console.WriteLine($"Name: {produkt.Product.Name} Pris: {produkt.Product.Price}");
+            Console.WriteLine($"Name: {produkt.Name} Quantity: {produkt.ProductCount} Pris: {produkt.Price}");
         }
 
         Console.ReadKey();

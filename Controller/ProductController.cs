@@ -12,11 +12,11 @@ public class ProductController
         var produkts = context.Products
             .Include(produkt => produkt.Category)
             .Where(produkt => produkt.Category.Name == Category)
-            .OrderBy(produkt => produkt.Price);
+            .OrderByDescending(produkt => produkt.Price);
 
         foreach (var produkt in produkts)
         {
-            Console.WriteLine($"Name: {produkt.Name}");
+            Console.WriteLine($"Name: {produkt.Name} Pris: {produkt.Price}");
         }
 
         Console.ReadKey();
